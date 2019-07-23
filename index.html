@@ -29,9 +29,16 @@ import { GLTFLoader } from './GLTFLoader.js';
 			import { OrbitControls } from './OrbitControls.js';
 			import { ImprovedNoise } from './ImprovedNoise.js';
 
+			import { DRACOLoader } from './DRACOLoader.js';
+			import { TransformControls } from './TransformControls.js';
+			import { Gyroscope } from './Gyroscope.js';
+
+			var  pointLight;
+			var  mixer;
+			var cameraControls;
 			var container, stats;
 
-			var camera, controls, scene, renderer;
+			var camera, controls, scene, renderer,controls1,camera1;
 
 			var mesh, texture;
 
@@ -39,12 +46,17 @@ import { GLTFLoader } from './GLTFLoader.js';
 				worldHalfWidth = worldWidth / 2, worldHalfDepth = worldDepth / 2;
 
 			var helper;
-
+			var controls = {
+				moveForward: false,
+				moveBackward: false,
+				moveLeft: false,
+				moveRight: false
+			};
 			var raycaster = new THREE.Raycaster();
 			var mouse = new THREE.Vector2();
-
+			var clock = new THREE.Clock();
 			init();
-			animate();
+			//animate1();
 
 			function init() {
 
@@ -54,6 +66,8 @@ import { GLTFLoader } from './GLTFLoader.js';
 				renderer = new THREE.WebGLRenderer( { antialias: true } );
 				renderer.setPixelRatio( window.devicePixelRatio );
 				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.gammaOutput = true;
+			    renderer.gammaFactor = 2.2;
 				container.appendChild( renderer.domElement );
 
 				scene = new THREE.Scene();
@@ -63,11 +77,9 @@ import { GLTFLoader } from './GLTFLoader.js';
 				camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 10, 20000 );
 
 				controls = new OrbitControls( camera, renderer.domElement );
-				controls.minDistance = 1000;
-				controls.maxDistance = 100000;
-				controls.maxPolarAngle = Math.PI/2;
-
-				//
+				controls.target.set( 0, 0.5, 0 );
+				controls.enableKeys= false;
+				
 
 				var data = generateHeight( worldWidth, worldDepth );
 
@@ -87,40 +99,14 @@ import { GLTFLoader } from './GLTFLoader.js';
 
 				}
 
-                geometry.computeFaceNormals(); // needed for helper
-                
-                let loader = new GLTFLoader();
-			loader.load('scene.gltf', function (gltf) {
-				let model = gltf.scene;
-				console.log(model);
-				model.scale.set(50,50,50);
-				model.position.set(200,400,0);
-                scene.add(model);
-				animate();
+				geometry.computeFaceNormals(); // needed for helper
 				
-			function animate() {
-				var animations = gltf.animations;
-				console.log(animations);
-				model.reverse.x+=0.15;
-				renderer.render( scene, camera );
-				requestAnimationFrame( function(){ animate();});
-				stats.update();
+			
+               
 
-			}
-
-			});
-
-			 loader.load('scene.gltf', function (gltf) {
-			 	let model1 = gltf.scene;
-			 	console.log(model1);
-			 	model1.position.set(900,600,0);
-			 	model1.scale.set(50,50,50);
-			 	scene.add(model1);
-			 	animate1();
-			 });
-
-				//
-
+				
+				var light = new THREE.AmbientLight(0xffffff);
+				scene.add(light);
 				texture = new THREE.CanvasTexture( generateTexture( data, worldWidth, worldDepth ) );
 				texture.wrapS = THREE.ClampToEdgeWrapping;
 				texture.wrapT = THREE.ClampToEdgeWrapping;
@@ -129,12 +115,11 @@ import { GLTFLoader } from './GLTFLoader.js';
 				scene.add( mesh );
 
 				var geometry = new THREE.ConeBufferGeometry( 20, 100, 3 );
-				geometry.translate( 0, 50, 0 );
+				geometry.translate( 0, 0, 80 );
 				geometry.rotateX( Math.PI / 2 );
 				helper = new THREE.Mesh( geometry, new THREE.MeshNormalMaterial() );
 				scene.add( helper );
 
-				container.addEventListener( 'mousemove', onMouseMove, false );
 
 				stats = new Stats();
 				container.appendChild( stats.dom );
@@ -243,39 +228,89 @@ import { GLTFLoader } from './GLTFLoader.js';
 				return canvasScaled;
 
 			}
+			let loader = new GLTFLoader();
+				loader.setDRACOLoader( new DRACOLoader() );
+				loader.load('scene.gltf', function (gltf) {
+				let model = gltf.scene;
+				model.scale.set(50,50,50);
+				model.position.set(200,600,0);
+				scene.add( model );
+				
 
-			//
 
-			function animate() {
-				model.rotation.x+=0.15;
-				renderer.render( scene, camera );
-				requestAnimationFrame( function(){ animate();});
+				var xSpeed = 70;
+var ySpeed = 80;
+
+document.addEventListener("keydown", onDocumentKeyDown, false);
+console.log("eoeo");
+function onDocumentKeyDown(event) {
+    var keyCode = event.which;
+    if (keyCode == 37) {
+		console.log("model1")
+        model.position.z += xSpeed;
+    } else if (keyCode == 38) {
+		console.log("model2")
+        model.position.x -= ySpeed;
+     } else if (keyCode == 39) {
+	 	console.log("model3")
+         model.position.z -= xSpeed;
+     } else if (keyCode == 40) {
+	      console.log("model4")
+         model.position.x +=ySpeed;
+     }// else if (keyCode == 32) {
+    //      model.position.set(0, 0, 0);
+	//  }
+render();	
+};
+container.addEventListener( 'mousemove', onMouseMove, false );
+
+function onMouseMove( event ) {
+
+mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2- 1;
+mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
+raycaster.setFromCamera( mouse, camera );
+
+// See if the ray from the camera into the world hits one of our meshes
+var intersects = raycaster.intersectObject( mesh );
+
+// Toggle rotation bool for meshes that we clicked
+if ( intersects.length > 0 ) {
+
+	helper.position.set( 0, 0, 0 );
+	helper.lookAt( intersects[ 0 ].face.normal );
+
+	helper.position.copy( intersects[ 0 ].point );
+	 //console.log(helper);
+}
+
+}
+
+function render() 
+{
+	renderer.render( scene, camera );
+}
+	
+			
+				
+
+				mixer = new THREE.AnimationMixer( model );
+				mixer.clipAction( gltf.animations[ 0 ] ).play();
+				animate1();
+			
+			 
+			 });
+			function animate1() {
+		//		console.log("eoro1");
+				requestAnimationFrame( animate1 );
+				var delta = clock.getDelta();
+				mixer.update( delta );
+				controls.update( delta );
 				stats.update();
-
+				renderer.render( scene, camera );
+				
 			}
-
-
-			function onMouseMove( event ) {
-
-				mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
-				mouse.y = - ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
-				raycaster.setFromCamera( mouse, camera );
-
-				// See if the ray from the camera into the world hits one of our meshes
-				var intersects = raycaster.intersectObject( mesh );
-
-				// Toggle rotation bool for meshes that we clicked
-				if ( intersects.length > 0 ) {
-
-					helper.position.set( 0, 0, 0 );
-					helper.lookAt( intersects[ 0 ].face.normal );
-
-					helper.position.copy( intersects[ 0 ].point );
-
-				}
-
-			}
-
+			
+		    
 		</script>
 
 	</body>
