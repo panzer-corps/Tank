@@ -40,7 +40,7 @@
 # User Interface
 ## The game allows both the palyers to enter their names initially. Also, the players are aloowed to view their names as well as the opponent's name on the screen while playing.
 # Contributors
-## Auyushi Bhardwaj
+## Ayushi Bhardwaj
 ## Akshita Panchal
 ## Harsh Khare
 ## Rashmi Chawda
