@@ -1,0 +1,146 @@
+.col-sm-6
+{
+    
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.row
+{
+    width: 100%;
+    height: 100%;
+    float: bottom;
+}
+.w3-card-4 w3-dark-grey
+{
+    width: 300px;
+    height: 300px;
+}
+#div1
+{
+     background-color: rgb(7, 49, 7); 
+    
+    color: white;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+#div2
+{
+    background-color: black;
+    
+    color: black;
+    text-align: center;
+    float: right;
+    width: 100%;
+    height: 100%;
+}
+.image
+{
+    width: 125px;
+    height: 125px;
+}
+
+#divselect1
+{
+    border: 1px solid white;
+    width: 400px;
+    height: 300px;
+    display: inline-block;
+    background-color: darkslategray;
+    border-radius: 4px;
+}
+.image
+{
+    width: 400px;
+    height: 300px;
+}
+#divselect2
+{
+    border: 1px solid white;
+    width: 400px;
+    height: 300px;
+    display: inline-block;
+    background-color: darkslategray;
+    border-radius: 4px;
+}
+.sp
+{
+    height: 100px;
+    width: 20px;
+}
+#btn1
+{
+    background-color: black;
+    margin-left: 10px;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+    color: white;
+}
+#btn2
+{
+    background-color: white;
+    color: black;
+    margin-left: 10px; 
+    padding-top: 10px;
+    padding-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+}
+#name2
+{
+    	background-color: white;
+     	color: darkslategray;
+    	border: none;
+     	padding-top: 10px;
+     	padding-bottom: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-radius: 4px; 
+    text-align: center;
+    margin-top: 5px;
+}
+#name1
+{
+	
+    	padding-top: 10px;
+    	padding-bottom: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+    	border: none;
+    	text-align: center;
+    	color: darkslategray;
+    	margin-top: 5px;
+	border-radius: 4px;
+}
+#ply1
+{
+    color: white;
+}
+#ply2
+{
+    color: white;
+}
+h3
+{
+    color: white;
+}
+#start
+{
+float: right;
+color: white;
+background-color: goldenrod; 
+border: 1px solid goldenrod;
+padding-top: 10px;
+padding-bottom: 10px;
+padding-left: 30px;
+padding-right: 30px;
+border-radius: 4px;
+}

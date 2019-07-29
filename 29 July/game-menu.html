@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      
+<style>
+
+body  {
+  background-image:url("images/tanks.png");
+  background-size: cover; 
+  background-color: #cccccc;
+}
+
+
+
+
+
+.button {
+  padding: 15px 120px;
+  font-size: 24px;
+  position: absolute;
+  margin-left: 1000px;
+  text-align: left;
+  cursor: pointer;
+  
+  outline: none;
+  color: #fff;
+  background-color:royalblue;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 10px #999;
+}
+
+.pl1
+{
+float: left;
+}
+.pl2
+{
+float: right;
+}
+
+
+.button:hover {
+	background-color:darkslategray
+   
+}
+
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.modal-content
+{
+background-color: darkslategray;
+}
+.modal-title
+{
+color: white;
+}
+
+
+
+.button2 
+{
+background-color:indianred
+
+}
+.button3 {background-color:darkcyan;}  
+.button4 {background-color:goldenrod;}  
+#music1
+{
+	float: left;
+}
+#sound1
+{
+	float: right;
+}
+#on,#off
+{
+	float: left;
+}
+#on1,#off1
+{
+	float: right;
+}
+#divm
+{
+	float: left;
+}
+#divs
+{
+	float: right;
+}
+#div1
+{
+	float: left;
+}
+#div2
+{
+	float: right;
+}
+#w
+{
+	padding-left: 2px;
+	padding-right: 3px;
+	margin-left: 30px;
+}
+#sp
+{
+padding-left: 20px;
+padding-right: 20px;
+}
+#a
+{
+	padding-left: 5px;
+	margin-left: 0px;
+}
+#ent
+{
+	margin-left: 47px;
+}
+#up
+{
+	text-align: center;
+	margin-left: 47px;
+	padding-left: 27px;
+}
+#pl1
+{
+	margin-left: 10px;
+}
+#pl2
+{
+	margin-left: 50px;
+}
+</style>
+</head>
+<body>
+		<
+	<!--Sound On/Off-->
+	<div class="modal" id="sound" data-keyboard="false" data-backdrop="static" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header text-center">
+					<h4 class="modal-title">Audio<h4>
+					<button class="close" data-dismiss="modal">&times;</button>
+					
+				</div>
+				<div class="modal-body">
+					<div id="divm">
+				<label id="music1"><h4>Music</h4></label>	
+				<br><br>
+				<button id="on" onclick="turn_on()">On</button>				
+				<button id="off" onclick="turn_off()">Off</button>
+				</div>
+				
+			</div>
+				<div class="modal-footer">
+					<button class="btn-close" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+	
+		</div>
+	</div>
+	<!--Controls Help-->
+	<div class="modal" id="controls" data-keyboard="false" data-backdrop="static" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header text-center">
+					<h4 class="modal-title">Controls<h4>
+					<button class="close" data-dismiss="modal">&times;</button>
+					
+				</div>
+				<div class="modal-body">
+					<div id="div1">	
+						
+							<tr ><td id="pl1">Player 1</td></tr>
+							<br>
+							<br>
+							<tr>
+								<td></td><td></td>
+								<td><button id="w">W</button></td>
+							</tr>
+							<br>
+							<tr>
+								
+								<td><button id="a">A</button></td>
+								<td><button id="s">S</button></td>
+								<td><button id="d">D</button></td>
+							</tr>
+							
+							<tr>    
+									<br><br>
+									<td><button id="sp">Space</button></td>
+							</tr>
+						
+						</div>		
+						<div id="div2">			
+						
+							<tr><td id="pl2">Player 2</td></tr>
+							<br>
+							<br>
+							<tr>
+								<td></td>
+								<td><button id="up">Up</button></td>
+							</tr>
+							<tr>
+								<br>
+								<td><button id="left">Left</button></td>
+								<td><button id="down">Down</button></td>
+								<td><button id="right">Right</button></td>
+							</tr>
+							<tr>
+								<br>
+								<br>
+								<td><button id="ent">Enter</button></td>
+							</tr>
+						
+						
+					</div>
+					<br><br><br><br>
+					
+				</div>
+				<div class="modal-footer">
+					<button class="btn-close" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+	
+		</div>
+	</div>
+<br>
+<br>
+<br>
+<br><br><br>
+<br><br><br><br>
+<audio  id="bgaudio" controls loop autoplay style="display:none">
+        <source src="music/2019-04-18_-_The_Epic_Boss_Fight_-_David_Fesliyan.mp3" type="audio/mp3" >
+      </audio>
+<audio id="click1" src="click/click_sound_6.mp3" preload="auto" ></audio>
+<audio id="click2" src="click/click_sound_4.mp3" preload="auto" ></audio>
+<button class="button button1" onclick="load()" onmouseover="play()">PLAY </button><br><br><br><br>
+<button class="button button2" data-target="#sound" onmouseover="play()" onclick="music()" data-toggle="modal" "> AUDIO </button><br><br><br><br>
+<button class="button button3" onclick="back()" onmouseover="play()"> BACK </button><br><br><br><br>
+<button class="button button4" data-target="#controls" onmouseover="play()" onclick="document.getElementById('click2').play()" data-toggle="modal"> HELP</button><br>
+<script>
+	var m = document.getElementById("bgaudio");
+	function music()
+	{
+		document.getElementById('click2').play();
+	} 
+	function turn_off()
+	{
+		m.pause();
+		
+	}
+	function turn_on()
+	{
+		m.play();
+	}
+	var c1 = document.getElementById("click1");
+	var c2 = document.getElementById("click2");
+	function on1()
+	{
+
+		play();
+		
+	}
+	function off1()
+	{
+		c1.pause();
+		c2.pause();
+	}
+function play()
+{
+	document.getElementById("click1").play();
+}
+function load()
+{
+document.getElementById("click2").play();
+setTimeout("window.location.href='player.html';",1000);
+}
+function back()
+{
+document.getElementById('click2').play();
+setTimeout("window.location.href='index.html';",1000);
+
+}
+
+
+</script>
+</body>
+</html>
