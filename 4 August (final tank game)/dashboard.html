@@ -1,0 +1,193 @@
+<html>
+    <head>
+        <title>TANK WARRIOR</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/dashboard.css">
+        <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan|Lobster&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Acme&display=swap" rel="stylesheet">
+        <script src="js/dashboard.js"></script>
+        
+        <!-- <link rel="stylesheet" href="bootstrap.css">
+        <script src="bootstrap.js"></script> -->
+    </head>
+    <body>
+            <h1><span class="blinking"><b>TANK WARRIOR</b></span> 
+            </h1>
+        <audio  id="bgaudio" controls loop autoplay style="display:none">
+            <source src="music/y2mate.com - uri_helicopter_scene_music_jagga_jiteya_epic_ringtone_music_ub_7KCof6PI.mp3" type="audio/mp3" >
+        </audio>
+        <audio src="click/click_sound_6.mp3" id="click1"></audio>
+        <audio src="click/click_sound_4.mp3" id="click2"></audio>
+        
+        <div id="menu">
+            <table>
+                <tr><td><button id="start" data-target="#start-box" data-toggle="modal" onclick="play()" onmouseover="start()">START</button></td></tr>
+                <tr></tr>
+                <tr><td><button id="level" data-target="#level-box" data-toggle="modal" onclick="play()" onmouseover="start()">LEVEL</button></td></tr>
+                <tr></tr>
+                <tr><td><button id="sound"  data-target="#sound-box" data-toggle="modal" onclick="play()" onmouseover="start()">SOUND</button></td></tr>
+                <tr></tr>
+                <tr><td><button id="help"  data-target="#controls-box" data-toggle="modal" onclick="play()" onmouseover="start()">HELP</button></td></tr>
+            </table>
+            
+        </div>
+
+        <!--Start Modal Dialog-->
+        <div class="modal" id="start-box" data-backdrop="static" data-keyboard="false" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content" id="mcont0">
+                    <div class="modal-header" id="mhead0">
+                        <h3>Enter Name</h3>
+                        <button class="close" data-dismiss="modal" onclick="play()">&times;</button>
+                    </div>
+                    <div class="modal-body" id="mbody0">
+                        <table>
+                            <tr>
+                                <td><img src="img/blue_tank.png" id="blueTank"></td>
+                                <td><h5 id="n1">PLAYER 1</h5></td>
+                                <td><h5 id="n2">PLAYER 2</h5></td>
+                                <td><img src="img/red tank.png" id="redTank"></td>
+                            </tr>
+                            <tr>
+                                
+                                <td><input type="text" id="name1"></input></td>
+                                
+                                <td><input  type="text" id="name2"></input></td>
+                            </tr>
+                            <tr>
+                                <button id="st" onclick="start_game()" onmouseover="color_change1()" onmouseout="color_change2()"><b>PLAY</b></button>
+                            </tr>
+                        </table>    
+                    </div>
+                    <div class="modal-footer" id="mfoot0">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Level Modal Dialog--> 
+        
+        <div class="modal" id="level-box" data-backdrop="static" data-keyboard="false" tabindex="-1">
+            <div class="modal-dialog">    
+                <div class="modal-content" id="modal1">
+                    <div class="modal-header" id="mhead1">
+                        <td></td><h3>LEVEL</h3>
+                        <button class="close" data-dismiss="modal" onclick="play()">&times;</button>
+                    </div>        
+                    <div class="modal-body" id="mbody1">
+                        <table>
+                            <tr><td><button id="easy" onclick="easy()" onmouseover="color_change3()" onmouseout="color_change4()"><b>EASY</b></button></td>
+                                <td></td><td></td><td><button id="hard" onclick="hard()" onmouseover="color_change5()" onmouseout="color_change6()"><b>HARD</b></button></td></tr>
+                        </table>
+                        
+                    </div>
+                    
+                    <div class="modal-footer" id="mfoot1">
+                        <tr id="btn-close"></tr>    
+                    </div>
+                </div>        
+            </div>
+        </div>    
+
+        <!--Sound Modal Dialog-->
+        
+        <div class="modal" id="sound-box" data-backdrop="static" data-keyboard="false" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content" id="modal2">
+                        <div class="modal-header" id="mhead2">
+                                <h3>SOUND</h3>
+                                <button class="close" data-dismiss="modal" onclick="play()">&times;</button>
+                            </div>  
+                        <div class="modal-body" id="mbody2">
+                            <tr><td><button id="on" onclick="on()" onmouseover="color_change7()" onmouseout="color_change8()"><b>ON</b></button></td></tr>
+                            <tr><td><button id="off" onclick="off()" onmouseover="color_change9()" onmouseout="color_change10()"><b>OFF</b></button></td></tr>
+                        </div>
+                        
+                        <div class="modal-footer" id="mfoot2">
+                                                                   
+                        </div>
+                </div>
+            </div>   
+        </div>
+
+        <!--Controls Modal Dialog-->
+        <div class="modal" id="controls-box" data-backdrop="static" data-keyboard="false" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" id="mcont1">
+                    <div class="modal-header" id="mhead3">
+                        <h3>CONTROLS</h3>
+                        <button class="close" data-dismiss="modal" onclick="play()">&times;</button>
+                    </div>
+                    
+                    <div class="modal-body" id="mbody3">
+                        
+                        <table id="ply1">
+                            
+                            <tr>
+                              <td id="p1"><b>PLAYER 1</b></td>
+                                
+                            </tr>
+                            
+                            
+                            <tr> 
+                                <td class="c1">W, A, S, D to Move</td>
+                            </tr>
+                            <tr>
+                                <td class="c1">Q and E to rotate the turret</td>
+                            </tr>
+                            <tr>
+                                <td class="c1"> F and R to raise and lower the turret</td>
+                            </tr>
+                            <tr>
+                                <td class="c1">shift to shoot</td>
+                            </tr>
+                        </table>
+                       
+                        <table id="ply2">
+                            <tr>
+                                <td id="p2"><b>PLAYER 2</b></td>
+                                
+                            </tr>
+                            
+                            <tr>
+                                <td class="c2">I, J, K, L to Move</td>
+                            </tr>
+                            <tr>
+                                <td class="c2">U and O to rotate the turret</td>
+                            </tr>
+                            <tr>
+                                <td class="c2"> Y and H to raise and lower the turret</td>
+                            </tr>
+                            <tr>
+                                <td class="c2"> / to shoot</td>
+                            </tr>
+                        </table> 
+                        <table id="inst">
+                                <tr class="row1">
+                                    <td>
+                                       <centre> Each Player has three lives.</centre>
+                                    </td>
+                                </tr>
+                                <tr class="row2">    
+                                    <td>
+                                        <centre>Players get +1 powerup when they shoot the opponent 3 times.</centre>  
+                                    </td>
+                                </tr>
+                            </table>       
+                                
+                    </div>
+                            
+                    <div class="modal-footer" id="mfoot3">
+                        
+                    </div>
+                </div>
+            </div>    
+     </div>
+        
+       
+    </body>
+</html>
