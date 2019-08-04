@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!-- Assignment #9 -->
+<!-- 
+Alvin Yang CS116B Section 1 
+This is the HTML file for the final project. Nothing to see here.
+-->
+<html>
+  <head>
+    <title>TANK WARRIOR</title>
+    <link rel = "stylesheet" type = "text/css"  href = "..//css/tank.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+    <script src="..//js/load.js"></script>
+
+  </head>
+
+  <body>
+    <div class="se-pre-con"></div>
+    <div id="container_red" position="relative">
+    
+              <div id="red">
+                  <div id="c2"></div>
+                  <h3 id="play2"></h3>
+                  <img src="..//img/circle.png" id="img1">
+                  <img src="..//img/circle.png" id="img2">
+                  <img src="..//img/circle.png" id="img3">
+                    <img src="..//img/star.png" id="img4">
+                </div>
+      </div>
+            <div id="container_blue">
+          <div id="blue">
+              <div id="c1"> </div><br>
+            <h3 id="play1"></h3>
+        <img src="..//img/blue_circle.png" id="blue_img1">
+        <img src="..//img/blue_circle.png" id="blue_img2">
+        <img src="..//img/blue_circle.png" id="blue_img3">
+        <img src="..//img/star.png" id="blue_img4">
+        </div>
+      </div>
+      
+   <!-- //<h1 id="c2"></h1> -->
+   
+   <div id="gameover">
+     <centre><h1 id="go1">     </h1>
+
+</centre>
+     </div>
+    
+    
+     <audio  id="bgaudio" controls loop autoplay style="display:none">
+      <source src="sounds/y2mate.com - avengers_theme_remix_wx-F8Y0JXiU.mp3" type="audio/mp3" >
+  </audio>
+    <canvas id="canvas" width="1750" height="750" position="absolute">
+    This browser doesn't support the HTML5 canvas element
+    
+    </canvas>
+    <script src="..//js/three.min.js"></script>
+    <script src="..//js/OrbitControls.js"></script>
+    <script src="..//js/GLTFLoader.js"></script>
+    <script src="..//js/ShaderParticles.min.js"></script>
+    <script src="easy_level.js"></script>
+   
+    
+	<!-- <script src="helvetiker_regular.typeface.js"></script> -->
+   
+    
+  </body>
+</html>
